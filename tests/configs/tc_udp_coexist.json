@@ -1,0 +1,21 @@
+{
+  "heartbeat": { "enabled": false },
+  "routes": [
+    {
+      "name": "web-tcp",
+      "listen_port": 9400,
+      "protocol": "tcp",
+      "backends": [
+        { "host": "127.0.0.1", "port": 7400 }
+      ]
+    },
+    {
+      "name": "echo-udp",
+      "listen_port": 9400,
+      "protocol": "udp",
+      "backends": [
+        { "host": "127.0.0.1", "port": 7401 }
+      ]
+    }
+  ]
+}

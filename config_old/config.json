@@ -1,0 +1,62 @@
+{
+  "dashboard": {
+  },
+  "heartbeat": {
+    "enabled": true,
+    "interval_seconds": 10
+  },
+  "rate_limit": {
+    "backoff_base_seconds": 60,
+    "backoff_max_seconds": 3600,
+    "max_per_minute": 1000
+  },
+  "routes": [
+    {
+      "backends": [
+        {
+          "blacklist": [
+            "127.0.0.9"
+          ],
+          "heartbeat": true,
+          "host": "127.0.0.1",
+          "port": 7001
+        }
+      ],
+      "listen_port": 9000,
+      "name": "payments"
+    },
+    {
+      "backends": [
+        {
+          "heartbeat": true,
+          "host": "127.0.0.1",
+          "port": 7002
+        }
+      ],
+      "listen_port": 9001,
+      "name": "inventory"
+    },
+    {
+      "backends": [
+        {
+          "heartbeat": true,
+          "host": "127.0.0.1",
+          "port": 7003
+        }
+      ],
+      "listen_port": 9002,
+      "name": "orders"
+    },
+    {
+      "backends": [
+        {
+          "heartbeat": true,
+          "host": "127.0.0.1",
+          "port": 7004
+        }
+      ],
+      "listen_port": 9007,
+      "name": "invoices"
+    }
+  ]
+}

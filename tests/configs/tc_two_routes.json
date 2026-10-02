@@ -1,0 +1,19 @@
+{
+  "heartbeat": { "enabled": false },
+  "routes": [
+    {
+      "name": "service-a",
+      "listen_port": 9100,
+      "backends": [
+        { "host": "127.0.0.1", "port": 7101 }
+      ]
+    },
+    {
+      "name": "service-b",
+      "listen_port": 9101,
+      "backends": [
+        { "host": "127.0.0.1", "port": 7102 }
+      ]
+    }
+  ]
+}

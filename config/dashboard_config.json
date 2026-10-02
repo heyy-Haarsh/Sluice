@@ -1,0 +1,39 @@
+{
+  "dashboard": {
+    "enabled": true,
+    "log_lines": 100,
+    "password_hash": "eaa2bded32cc585d3f37c5319abe8890ad28a697ed66d5823f10536cc9c0fdb9",
+    "port": 8080
+  },
+  "heartbeat": {
+    "enabled": true,
+    "interval_seconds": 5
+  },
+  "routes": [
+    {
+      "backends": [
+        {
+          "host": "127.0.0.1",
+          "port": 7001
+        }
+      ],
+      "listen_port": 9000,
+      "name": "payments"
+    },
+    {
+      "backends": [
+        {
+          "host": "127.0.0.1",
+          "port": 7003
+        },
+        {
+          "host": "127.0.0.1",
+          "port": 7004
+        }
+      ],
+      "listen_port": 9003,
+      "name": "orders"
+    }
+  ],
+  "worker_processes": 1
+}

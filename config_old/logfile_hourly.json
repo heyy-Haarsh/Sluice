@@ -1,0 +1,18 @@
+{
+  "worker_processes": 2,
+  "log_file": "gateway.log",
+  "log_rotation": "hourly",
+  "heartbeat": {
+    "enabled": true,
+    "interval_seconds": 5
+  },
+  "routes": [
+    {
+      "name": "payments",
+      "listen_port": 9000,
+      "backends": [
+        { "host": "127.0.0.1", "port": 7001 }
+      ]
+    }
+  ]
+}

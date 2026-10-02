@@ -1,0 +1,15 @@
+# Rotation for Sluice logs. The gateway's own "log_rotation" is left "none" in
+# the shipped config so logrotate owns the policy; on rotation we send SIGHUP,
+# which the log-writer process handles by reopening the file (see logwriter.cpp).
+/var/log/sluice/*.log {
+    daily
+    rotate 14
+    missingok
+    notifempty
+    compress
+    delaycompress
+    create 0640 sluice sluice
+    postrotate
+        systemctl kill -s HUP sluice.service 2>/dev/null || true
+    endscript
+}

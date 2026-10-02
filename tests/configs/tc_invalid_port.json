@@ -1,0 +1,12 @@
+{
+  "heartbeat": { "enabled": false },
+  "routes": [
+    {
+      "name": "payments",
+      "listen_port": 0,
+      "backends": [
+        { "host": "127.0.0.1", "port": 7001 }
+      ]
+    }
+  ]
+}

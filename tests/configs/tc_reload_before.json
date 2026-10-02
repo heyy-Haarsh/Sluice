@@ -1,0 +1,12 @@
+{
+  "heartbeat": { "enabled": false },
+  "routes": [
+    {
+      "name": "test-service",
+      "listen_port": 9000,
+      "backends": [
+        { "host": "127.0.0.1", "port": 7001 }
+      ]
+    }
+  ]
+}

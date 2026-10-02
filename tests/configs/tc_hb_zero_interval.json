@@ -1,0 +1,12 @@
+{
+  "heartbeat": { "enabled_misspelled": true },
+  "routes": [
+    {
+      "name": "svc",
+      "listen_port": 9000,
+      "backends": [
+        { "host": "127.0.0.1", "port": 7001 }
+      ]
+    }
+  ]
+}

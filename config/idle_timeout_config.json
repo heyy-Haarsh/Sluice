@@ -1,0 +1,30 @@
+{
+  "worker_processes": 1,
+  "dashboard": { "enabled": false },
+  "idle_timeout_seconds": 6,
+  "routes": [
+    {
+      "name": "inherits_global",
+      "listen_port": 9000,
+      "backends": [
+        { "host": "127.0.0.1", "port": 7001 }
+      ]
+    },
+    {
+      "name": "no_idle",
+      "listen_port": 9001,
+      "idle_timeout_seconds": 0,
+      "backends": [
+        { "host": "127.0.0.1", "port": 7002 }
+      ]
+    },
+    {
+      "name": "custom_idle",
+      "listen_port": 9002,
+      "idle_timeout_seconds": 3,
+      "backends": [
+        { "host": "127.0.0.1", "port": 7003 }
+      ]
+    }
+  ]
+}

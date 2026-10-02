@@ -1,0 +1,95 @@
+{
+  "blacklist": [
+    
+  ],
+  "dashboard": {
+    "bind": "127.0.0.1",
+    "enabled": true,
+    "password_hash": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8",
+    "port": 8080
+  },
+  "heartbeat": {
+    "enabled": true,
+    "interval_seconds": 3
+  },
+  "max_udp_sessions": 1000,
+  "rate_limit": {
+    "backoff_base_seconds": 15,
+    "backoff_max_seconds": 60,
+    "max_per_minute": 1000
+  },
+  "routes": [
+    {
+      "affinity": [
+        
+      ],
+      "backends": [
+        {
+          "heartbeat": true,
+          "host": "127.0.0.1",
+          "port": 8001
+        },
+        {
+          "heartbeat": true,
+          "host": "127.0.0.1",
+          "port": 8002
+        },
+        {
+          "heartbeat": true,
+          "host": "127.0.0.1",
+          "port": 8003
+        }
+      ],
+      "listen_port": 9000,
+      "name": "web"
+    },
+    {
+      "backends": [
+        {
+          "heartbeat": true,
+          "host": "127.0.0.1",
+          "port": 8010,
+          "proxy_protocol": false
+        }
+      ],
+      "listen_port": 9010,
+      "name": "echo"
+    },
+    {
+      "backends": [
+        {
+          "host": "127.0.0.1",
+          "port": 7401
+        },
+        {
+          "host": "127.0.0.1",
+          "port": 7402
+        },
+        {
+          "host": "127.0.0.1",
+          "port": 7403
+        }
+      ],
+      "listen_port": 9400,
+      "name": "telemetry",
+      "protocol": "udp",
+      "max_datagram_bytes":250,
+      "udp_datagram_rate_limit": 5,
+      "udp_session_timeout_seconds": 10
+    },
+    {
+      "backends": [
+        {
+          "host": "127.0.0.1",
+          "port": 7410,
+          "proxy_protocol": false
+        }
+      ],
+      "listen_port": 9401,
+      "name": "udp-proxy",
+      "protocol": "udp",
+      "udp_session_timeout_seconds": 30
+    }
+  ],
+  "udp_session_timeout_seconds": 10
+}

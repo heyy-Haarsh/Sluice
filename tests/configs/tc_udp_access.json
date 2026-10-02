@@ -1,0 +1,15 @@
+{
+  "heartbeat": { "enabled": false },
+  "udp_session_timeout_seconds": 30,
+  "blacklist": [ "127.0.0.2" ],
+  "routes": [
+    {
+      "name": "udp-guarded",
+      "listen_port": 9401,
+      "protocol": "udp",
+      "backends": [
+        { "host": "127.0.0.1", "port": 7401 }
+      ]
+    }
+  ]
+}

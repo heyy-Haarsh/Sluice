@@ -1,0 +1,16 @@
+{
+  "routes": [
+    {
+      "name": "udp-a",
+      "listen_port": 9401,
+      "protocol": "udp",
+      "backends": [ { "host": "127.0.0.1", "port": 7401 } ]
+    },
+    {
+      "name": "udp-b",
+      "listen_port": 9401,
+      "protocol": "udp",
+      "backends": [ { "host": "127.0.0.1", "port": 7402 } ]
+    }
+  ]
+}

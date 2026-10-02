@@ -1,0 +1,70 @@
+{
+  "blacklist": [
+    "127.0.0.9",
+    "127.0.0.7"
+  ],
+  "dashboard": {
+    "bind": "127.0.0.1",
+    "enabled": true,
+    "port": 8080
+  },
+  "heartbeat": {
+    "enabled": true,
+    "interval_seconds": 3
+  },
+  "rate_limit": {
+    "backoff_base_seconds": 15,
+    "backoff_max_seconds": 60,
+    "max_per_minute": 5
+  },
+  "routes": [
+    {
+      "affinity": [
+        {
+          "client": "127.0.0.7",
+          "host": "127.0.0.1",
+          "port": 8003
+        }
+      ],
+      "backends": [
+        {
+          "heartbeat": true,
+          "host": "127.0.0.1",
+          "port": 8001,
+          "proxy_protocol": true
+        },
+        {
+          "heartbeat": true,
+          "host": "127.0.0.1",
+          "port": 8002,
+          "proxy_protocol": true
+        },
+        {
+          "heartbeat": true,
+          "host": "127.0.0.1",
+          "port": 8003,
+          "proxy_protocol": true
+        },
+        {
+          "heartbeat": true,
+          "host": "127.0.0.1",
+          "port": 8004,
+          "proxy_protocol": true
+        }
+      ],
+      "listen_port": 9000,
+      "name": "web"
+    },
+    {
+      "backends": [
+        {
+          "heartbeat": true,
+          "host": "127.0.0.1",
+          "port": 5000
+        }
+      ],
+      "listen_port": 7001,
+      "name": "echo_ser"
+    }
+  ]
+}

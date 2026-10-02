@@ -1,0 +1,3 @@
+phase,connections,successful,failed,throughput_mb_s,latency_avg_ms,latency_p95_ms,latency_p99_ms
+before_kill,500,500,0,29.158,32.277,33.819,36.839
+after_kill,500,500,0,28.065,33.527,34.688,37.025

@@ -1,0 +1,24 @@
+{
+  "heartbeat": {
+    "enabled": true,
+    "interval_seconds": 5
+  },
+  "routes": [
+    {
+      "name": "payments",
+      "listen_port": 9000,
+      "backends": [
+        { "host": "127.0.0.1", "port": 7001 }
+      ]
+    },
+    {
+      "name": "orders",
+      "listen_port": 9003,
+      "backends": [
+        { "host": "127.0.0.1", "port": 7003 },
+        { "host": "127.0.0.1", "port": 7004 },
+        { "host": "127.0.0.1", "port": 7005, "heartbeat": false }
+      ]
+    }
+  ]
+}

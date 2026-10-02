@@ -1,0 +1,24 @@
+{
+  "heartbeat": {
+    "enabled": true,
+    "interval_seconds": 10
+  },
+  "dashboard": {
+    "enabled": true,
+    "port": 8080,
+    "log_lines": 100
+  },
+  "routes": [
+    {
+      "backends": [
+        {
+          "heartbeat": true,
+          "host": "127.0.0.1",
+          "port": 5050
+        }
+      ],
+      "listen_port": 9000,
+      "name": "default_service"
+    }
+  ]
+}

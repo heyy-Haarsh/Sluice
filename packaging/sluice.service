@@ -1,0 +1,47 @@
+[Unit]
+Description=Sluice — Layer-4 TCP reverse proxy (Sluice)
+Documentation=https://github.com/your-org/sluice
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=sluice
+Group=sluice
+ExecStart=/usr/bin/sluice /etc/sluice/config.json
+# `systemctl reload sluice` -> config hot-reload (SIGUSR1)
+ExecReload=/bin/kill -USR1 $MAINPID
+Restart=on-failure
+RestartSec=2
+
+# Bind privileged ports (80/443/...) without running as root.
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+
+# ── Sandboxing / hardening ──────────────────────────────────────────────────
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+ProtectClock=true
+ProtectHostname=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallFilter=~@privileged @resources
+# ProtectSystem=strict makes the whole fs read-only except these paths:
+#   /var/log/sluice  — the log-writer process appends here
+#   /etc/sluice      — the dashboard's "save config" writes config.json here
+ReadWritePaths=/var/log/sluice /etc/sluice
+
+[Install]
+WantedBy=multi-user.target

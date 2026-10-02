@@ -1,0 +1,15 @@
+{
+  "heartbeat": { "enabled": true, "interval_seconds": 3 },
+  "dashboard": { "enabled": true, "port": 8080 },
+  "udp_session_timeout_seconds": 5,
+  "routes": [
+    {
+      "name": "udp-echo",
+      "listen_port": 9401,
+      "protocol": "udp",
+      "backends": [
+        { "host": "127.0.0.1", "port": 7401 }
+      ]
+    }
+  ]
+}

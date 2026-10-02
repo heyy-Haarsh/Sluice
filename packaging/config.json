@@ -1,0 +1,17 @@
+{
+  "worker_processes": 1,
+  "dashboard": { "enabled": true, "port": 9090 },
+  "heartbeat": { "enabled": true, "interval_seconds": 10 },
+  "log_file": "/var/log/sluice/sluice.log",
+  "log_rotation": "none",
+  "max_connections": 10000,
+  "routes": [
+    {
+      "name": "example",
+      "listen_port": 8080,
+      "backends": [
+        { "host": "127.0.0.1", "port": 3000 }
+      ]
+    }
+  ]
+}

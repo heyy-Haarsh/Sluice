@@ -1,0 +1,15 @@
+{
+  "heartbeat": { "enabled": false },
+  "max_udp_sessions": 2,
+  "udp_session_timeout_seconds": 60,
+  "routes": [
+    {
+      "name": "udp-capped",
+      "listen_port": 9401,
+      "protocol": "udp",
+      "backends": [
+        { "host": "127.0.0.1", "port": 7401 }
+      ]
+    }
+  ]
+}

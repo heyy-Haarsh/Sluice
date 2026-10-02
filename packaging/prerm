@@ -1,0 +1,14 @@
+#!/bin/sh
+# Prerm for sluice (sluice). Stop the service before files are removed.
+set -e
+
+case "$1" in
+  remove|deconfigure)
+    if [ -d /run/systemd/system ]; then
+      systemctl stop sluice.service || true
+      systemctl disable sluice.service || true
+    fi
+    ;;
+esac
+
+exit 0

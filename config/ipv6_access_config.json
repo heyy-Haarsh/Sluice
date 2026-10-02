@@ -1,0 +1,22 @@
+{
+  "worker_processes": 1,
+  "dashboard": { "enabled": false },
+  "heartbeat": { "enabled": false },
+  "blacklist": [ "fd00:0:0:0:0:0:0:9", "fd00:beef::/32" ],
+  "routes": [
+    {
+      "name": "gate",
+      "listen_port": 9000,
+      "backends": [
+        { "host": "127.0.0.1", "port": 7001 }
+      ]
+    },
+    {
+      "name": "vip",
+      "listen_port": 9001,
+      "backends": [
+        { "host": "127.0.0.1", "port": 7002, "whitelist": [ "fd00:cafe::/32" ] }
+      ]
+    }
+  ]
+}

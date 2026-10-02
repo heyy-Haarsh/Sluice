@@ -1,0 +1,14 @@
+{
+  "worker_processes": 1,
+  "dashboard": { "enabled": false },
+  "heartbeat": { "enabled": false },
+  "routes": [
+    {
+      "name": "app",
+      "listen_port": 9000,
+      "backends": [
+        { "host": "127.0.0.1", "port": 7001 }
+      ]
+    }
+  ]
+}

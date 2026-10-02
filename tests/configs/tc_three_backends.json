@@ -1,0 +1,14 @@
+{
+  "heartbeat": { "enabled": false },
+  "routes": [
+    {
+      "name": "lb-service",
+      "listen_port": 9200,
+      "backends": [
+        { "host": "127.0.0.1", "port": 7201 },
+        { "host": "127.0.0.1", "port": 7202 },
+        { "host": "127.0.0.1", "port": 7203 }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "worker_processes": 1,
+  "dashboard": { "enabled": false },
+  "heartbeat": { "enabled": true, "interval_seconds": 3 },
+  "routes": [
+    {
+      "name": "cache",
+      "listen_port": 9010,
+      "backends": [
+        { "host": "127.0.0.1", "port": 7010, "blacklist": ["127.0.20.5"] },
+        { "host": "127.0.0.1", "port": 7011 }
+      ],
+      "affinity": [
+        { "client": "127.0.20.0/24", "host": "127.0.0.1", "port": 7010 }
+      ]
+    }
+  ]
+}

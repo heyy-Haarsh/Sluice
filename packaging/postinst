@@ -1,0 +1,39 @@
+#!/bin/sh
+# Postinst for sluice (sluice). Creates the dedicated system user,
+# sets up runtime dirs, and enables the service.
+set -e
+
+case "$1" in
+  configure)
+    # ── dedicated, unprivileged system user/group ──────────────────────────
+    if ! getent group sluice >/dev/null; then
+      addgroup --system sluice
+    fi
+    if ! getent passwd sluice >/dev/null; then
+      adduser --system --no-create-home --ingroup sluice \
+              --disabled-login --gecos "Sluice proxy" sluice
+    fi
+
+    # ── log directory (writer process appends here) ────────────────────────
+    mkdir -p /var/log/sluice
+    chown sluice:sluice /var/log/sluice
+    chmod 0750 /var/log/sluice
+
+    # ── config dir: sluice owns it so the dashboard's save-config can write ─
+    chown -R sluice:sluice /etc/sluice
+    chmod 0750 /etc/sluice
+    if [ -f /etc/sluice/config.json ]; then
+      chmod 0640 /etc/sluice/config.json
+    fi
+
+    # ── systemd ─────────────────────────────────────────────────────────────
+    if [ -d /run/systemd/system ]; then
+      systemctl daemon-reload || true
+      systemctl enable sluice.service || true
+      # start on install, restart on upgrade
+      systemctl restart sluice.service || true
+    fi
+    ;;
+esac
+
+exit 0

@@ -1,0 +1,24 @@
+#!/bin/sh
+# Postrm for sluice (sluice).
+#   remove : leave user, config and logs in place (in case of reinstall)
+#   purge  : remove the dedicated user, logs, and the (dpkg-managed) config dir
+set -e
+
+case "$1" in
+  purge)
+    rm -rf /var/log/sluice
+    rm -rf /etc/sluice
+    if getent passwd sluice >/dev/null; then
+      deluser --system sluice || true
+    fi
+    if getent group sluice >/dev/null; then
+      delgroup --system sluice || true
+    fi
+    ;;
+esac
+
+if [ -d /run/systemd/system ]; then
+  systemctl daemon-reload || true
+fi
+
+exit 0

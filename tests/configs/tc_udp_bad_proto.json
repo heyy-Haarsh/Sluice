@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "name": "bad",
+      "listen_port": 9401,
+      "protocol": "sctp",
+      "backends": [
+        { "host": "127.0.0.1", "port": 7401 }
+      ]
+    }
+  ]
+}

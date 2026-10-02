@@ -1,0 +1,16 @@
+{
+  "worker_processes": 4,
+  "dashboard": { "enabled": false },
+  "heartbeat": { "enabled": true, "interval_seconds": 3 },
+  "routes": [
+    {
+      "name": "web",
+      "listen_port": 9000,
+      "backends": [
+        { "host": "127.0.0.1", "port": 8001 },
+        { "host": "127.0.0.1", "port": 8002 },
+        { "host": "127.0.0.1", "port": 8003 }
+      ]
+    }
+  ]
+}
